@@ -9,6 +9,7 @@ public class MemoryMethods {
     Map<Integer,String> MapWithLetters=new HashMap<>();
     String[][] board;
 
+
     public String[][] creatingArray() {
 
         System.out.println("proszę podać poziom trudności" + "\n 1-poziom dla początkujących 1 \n 2-poziom dla początkujących 2 \n 3-poziom średniozaawansowany 1 " +
@@ -74,7 +75,6 @@ public class MemoryMethods {
 
     public String[][] fillingnumbers(String[][] board) {
         String [][] boardWithNumbers=board.clone();
-
         int counter=0;
         for (int i = 0; i < boardWithNumbers.length; i++) {
             for (int j = 0; j < boardWithNumbers.length; j++) {
@@ -106,10 +106,7 @@ public class MemoryMethods {
 
             }
         }
-
     }
-
-
     public List<String> sorting(String [][] board) {
         List<String> listOfLetters = new ArrayList<>();
         for (int i = 0; i < board.length; i++) {
@@ -123,11 +120,9 @@ public class MemoryMethods {
         listOfLetters.sort(Comparator.comparing(String::valueOf));
         return listOfLetters;
     }
-
-
-    public void guessing(List<String>listOfletters) {
+    public int guessing(List<String>listOfletters) {
         boolean flag = true;
-
+int stats=0;
         int indeks = -1;
         int tmpWriter;
         int difference;
@@ -145,6 +140,8 @@ public class MemoryMethods {
                 if((listOfletters.get(indeks)).equals(MapWithLetters.get(tmpWriter-1).trim())){
 
                     System.out.println("dobrze");
+                    stats++;
+
                 }else{
 
                     System.out.println("źle");
@@ -155,7 +152,7 @@ public class MemoryMethods {
                 System.out.println("koniec gry");
             }
         }
-
+return stats;
     }
     public static void clrscr(){
         //Clears Screen in java
