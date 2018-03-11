@@ -8,7 +8,8 @@ public class MemoryMethods {
     Scanner sin=new Scanner(System.in);
     Map<Integer,String> MapWithLetters=new HashMap<>();
     String[][] board;
-
+    List<List> listOfWspolrzedne=new ArrayList<>();
+    String[][] boardWithNumbers;
 
     public String[][] creatingArray() {
 
@@ -81,6 +82,10 @@ public class MemoryMethods {
                 if (j % 2 == 1 && i % 2 == 1) {
                     counter++;
                     MapWithLetters.put((Integer)(counter-1),board[i][j]);
+                    List<Integer> wspolrzedne=new ArrayList<>();
+                    wspolrzedne.add((Integer)i);
+                    wspolrzedne.add((Integer)j);
+                    listOfWspolrzedne.add(wspolrzedne);
                     if(counter<10){
                         board[i][j] = " " + String.valueOf(counter)+" ";
                     }else{
@@ -117,12 +122,19 @@ public class MemoryMethods {
 
             }
         }
+
         listOfLetters.sort(Comparator.comparing(String::valueOf));
         return listOfLetters;
     }
+    public void createGetBoardWithNumers(String[][]BoardWithNumbers){
+        this.boardWithNumbers=BoardWithNumbers;
+    }
+
+
     public int guessing(List<String>listOfletters) {
         boolean flag = true;
 int stats=0;
+
         int indeks = -1;
         int tmpWriter;
         int difference;
@@ -133,7 +145,9 @@ int stats=0;
             indeks = listOfletters.lastIndexOf(listOfletters.get(indeks + 1));
             difference = indeks - tmpIndeks;
             System.out.println("podaj liczby pod którymi znajduję się litera " + listOfletters.get(indeks) + ". Wystąpiła " + difference + " razy");
+
             for (int i = 0; i < difference; i++) {
+                System.out.println();
                 System.out.println("podaj " + (i + 1) + " wystąpienie");
                 tmpWriter =sin.nextInt();
 
@@ -141,9 +155,11 @@ int stats=0;
 
                     System.out.println("dobrze");
                     stats++;
-
+                    boardWithNumbers[(int) listOfWspolrzedne.get(tmpWriter-1).get(0)][(int) listOfWspolrzedne.get(tmpWriter-1).get(1)]=" "+MapWithLetters.get(tmpWriter-1).trim()+" ";
+display(boardWithNumbers);
                 }else{
-
+                    display(boardWithNumbers);
+                    System.out.println();
                     System.out.println("źle");
                 }
             }
