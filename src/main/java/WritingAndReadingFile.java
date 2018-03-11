@@ -29,7 +29,16 @@ while(counter<users.size()) {
 }
     }
 
+
 }
+public void displayList() throws IOException {
+    List<Users> users=ReadingFromFile();
+    for(Users user:users){
+        System.out.println(user);
+    }
+    }
+
+
     public List<Users> ReadingFromFile() throws IOException {
         List<Users>users=new ArrayList<>();
         try (FileReader inFile = new FileReader(PATH_USERS.toFile());

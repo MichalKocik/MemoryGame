@@ -70,7 +70,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Imię : " + firstName+ " Nazwisko : "+ lastName + "ilość zdobytych punktów " + stats;
+        return "Imię: " + firstName+ " Nazwisko: "+ lastName + " ilość zdobytych punktów: " + stats;
     }
 
     public int compare(String firstName, String lastName, List<Users>usersListcomp){
